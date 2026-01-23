@@ -1,5 +1,5 @@
 import React from "react";
-import { Sequence, AbsoluteFill, useCurrentFrame, interpolate, spring, useVideoConfig } from "remotion";
+import { Sequence, AbsoluteFill, useCurrentFrame, interpolate, spring, useVideoConfig, Img, staticFile } from "remotion";
 import { SkillsComposition } from "./SkillsComposition";
 import { LogoComposition } from "./LogoComposition";
 
@@ -19,8 +19,8 @@ export const MasterComposition: React.FC = () => {
     });
 
     // EXIT: Spring animation for flip
-    // Starts at frame 160 (approx 5.3s)
-    const exitFrame = 160;
+    // Starts at frame 130 (approx 4.3s) - Aligned with Logo/Intro Text Start
+    const exitFrame = 130;
     const exitProgress = spring({
         frame: frame - exitFrame,
         fps,
@@ -48,11 +48,16 @@ export const MasterComposition: React.FC = () => {
 
     return (
         <AbsoluteFill
-            className="bg-[#FFFBEB]"
             style={{ perspective: "1000px" }}
         >
-            {/* Logos behind the terminal */}
-            <Sequence from={140} durationInFrames={100}>
+            <Img
+                src={staticFile("background.png")}
+                className="absolute inset-0 w-full h-full object-cover"
+            />
+
+            {/* Logos and Intro Text behind the terminal */}
+            {/* Start at 130: Terminal begins flipping, Intro Text starts appearing immediately */}
+            <Sequence from={130} durationInFrames={110}>
                 <div className="w-full h-full flex items-center justify-center">
                     <LogoComposition />
                 </div>
