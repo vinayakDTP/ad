@@ -1,9 +1,8 @@
-import React from "react";
-import { TerminalContent } from "./TerminalContent";
+import { TerminalContent, OutputLine } from "./TerminalContent";
 
 interface TerminalProps {
     command?: string;
-    outputLines?: string[];
+    outputLines?: OutputLine[];
     showCursor?: boolean;
     startFrame?: number;
     typingSpeed?: number;

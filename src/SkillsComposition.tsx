@@ -1,37 +1,50 @@
 import React from "react";
 import { Terminal } from "./components/Terminal";
 
+const SEARCH_COLOR = "#3B82F6";
+
 const OUTPUT_LINES = [
     "",
-    "███████╗██╗  ██╗██╗██╗     ██╗     ███████╗",
-    "██╔════╝██║ ██╔╝██║██║     ██║     ██╔════╝",
-    "███████╗█████╔╝ ██║██║     ██║     ███████╗",
-    "╚════██║██╔═██╗ ██║██║     ██║     ╚════██║",
-    "███████║██║  ██╗██║███████╗███████╗███████║",
-    "╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝",
+    { text: " ███████╗███████╗ █████╗ ██████╗  ██████╗██╗  ██╗██╗███╗   ██╗ ██████╗ ", color: SEARCH_COLOR },
+    { text: " ██╔════╝██╔════╝██╔══██╗██╔══██╗██╔════╝██║  ██║██║████╗  ██║██╔════╝ ", color: SEARCH_COLOR },
+    { text: " ███████╗█████╗  ███████║██████╔╝██║     ███████║██║██╔██╗ ██║██║  ███╗", color: SEARCH_COLOR },
+    { text: " ╚════██║██╔══╝  ██╔══██║██╔══██╗██║     ██╔══██║██║██║╚██╗██║██║   ██║", color: SEARCH_COLOR },
+    { text: " ███████║███████╗██║  ██║██║  ██║╚██████╗██║  ██║██║██║ ╚████║╚██████╔╝", color: SEARCH_COLOR },
+    { text: " ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ ", color: SEARCH_COLOR },
     "",
-    "┌   skills",
-    "│",
-    "◇  Source: https://github.com/remotion-dev/skills.git",
-    "│",
-    "◇  Repository cloned",
+    "A desk lamp hums. Rain taps against the window.",
+    "The city waits. Something doesn’t sit right.",
     "",
-    "◇  Found 1 skill",
-    "│",
-    "●  Skill: remotion-best-practices",
-    "│",
-    "│  Best practices for Remotion - Video creation in React",
+    "◈ Case file opened",
+    "◈ Status: SEARCHING",
     "",
-    "◇  Detected 3 agents",
-    "│",
-    "◇  Select agents to install skills to",
-    "│  Antigravity, Cursor, Gemini CLI",
+    "◈ Question on the table:",
+    "  Where does real agency come from?",
+    "",
+    "◈ Scanning surroundings for clues...",
+    "◈ No clear answers. Only signals.",
+    "",
+    "◈ Leads emerging:",
+    "  - Curiosity that won’t shut up",
+    "  - Restlessness masquerading as boredom",
+    "  - The pull toward building something new",
+    "",
+    "◈ Possible agencies identified:",
+    "  - You",
+    "  - Your tools",
+    "  - The next deliberate move",
+    "",
+    "The magnifying glass lowers.",
+    "Nothing solved. But the direction is clearer.",
+    "SEARCHING continues.",
+    "",
 ];
+
 
 export const SkillsComposition: React.FC = () => {
     return (
         <Terminal
-            command="npx skills add remotion-dev/skills"
+            command="npx skills add agency"
             outputLines={OUTPUT_LINES}
             showCursor={true}
             startFrame={30}

@@ -2,9 +2,11 @@ import React from "react";
 import { useCurrentFrame } from "remotion";
 import { Cursor } from "./Cursor";
 
+export type OutputLine = string | { text: string; color: string };
+
 interface TerminalContentProps {
     command: string;
-    outputLines?: string[];
+    outputLines?: OutputLine[];
     showCursor?: boolean;
     startFrame?: number;
     typingSpeed?: number;
@@ -44,7 +46,7 @@ export const TerminalContent: React.FC<TerminalContentProps> = ({
     return (
         <div className="flex-1 bg-[#FFFFFF] p-6 font-mono text-base overflow-hidden">
             {/* Prompt Line */}
-            <div className="flex items-center">
+            <div className="flex items-center shrink-0">
                 <span className="text-[#1E1E1E]">
                     <span className="text-[#3B82F6] font-semibold">~</span>
                     <span className="text-[#6B7280]"> $ </span>
@@ -54,11 +56,16 @@ export const TerminalContent: React.FC<TerminalContentProps> = ({
             </div>
 
             {/* Output Lines */}
-            {visibleOutputLines.map((line, index) => (
-                <div key={index} className="text-[#1E1E1E] whitespace-pre">
-                    {line}
-                </div>
-            ))}
+            {visibleOutputLines.map((line, index) => {
+                const text = typeof line === 'string' ? line : line.text;
+                const color = typeof line === 'string' ? '#1E1E1E' : line.color;
+
+                return (
+                    <div key={index} className="whitespace-pre" style={{ color }}>
+                        {text}
+                    </div>
+                );
+            })}
 
             {/* Cursor at end of output */}
             {showCursor && isTypingComplete && linesToShow >= outputLines.length && (

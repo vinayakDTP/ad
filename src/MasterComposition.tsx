@@ -1,5 +1,5 @@
 import React from "react";
-import { Sequence, AbsoluteFill, useCurrentFrame, interpolate, spring, useVideoConfig, Img, staticFile } from "remotion";
+import { Sequence, AbsoluteFill, useCurrentFrame, interpolate, spring, useVideoConfig, Img, staticFile, Audio } from "remotion";
 import { SkillsComposition } from "./SkillsComposition";
 import { LogoComposition } from "./LogoComposition";
 
@@ -50,6 +50,8 @@ export const MasterComposition: React.FC = () => {
         <AbsoluteFill
             style={{ perspective: "1000px" }}
         >
+            <Audio src={staticFile("music.mp3")} startFrom={20 * 30} />
+
             <Img
                 src={staticFile("background.png")}
                 className="absolute inset-0 w-full h-full object-cover"
