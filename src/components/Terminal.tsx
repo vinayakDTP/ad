@@ -24,7 +24,7 @@ export const Terminal: React.FC<TerminalProps> = ({
         <div className="w-full h-full p-12 flex items-center justify-center">
             {/* Terminal Window */}
             <div className="w-[90%] h-[85%] rounded-xl overflow-hidden flex flex-col border border-[#D1D1D1]">
-                {/* Title Bar */}
+                {/* Title Bar - Silverish */}
                 <div className="bg-[#E4E4E4] px-6 py-4 flex items-center gap-3 border-b border-[#D1D1D1]">
                     {/* Traffic Lights */}
                     <div className="flex gap-2.5">

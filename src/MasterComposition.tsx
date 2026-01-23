@@ -48,7 +48,7 @@ export const MasterComposition: React.FC = () => {
 
     return (
         <AbsoluteFill
-            className="bg-[#f8fafc]"
+            className="bg-[#FFFBEB]"
             style={{ perspective: "1000px" }}
         >
             {/* Logos behind the terminal */}
