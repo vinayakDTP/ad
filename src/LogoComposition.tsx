@@ -32,6 +32,22 @@ const IntroSequence: React.FC = () => {
         easing: Easing.in(Easing.quad),
     });
 
+    // 4. Scale Animations (0.5s = 15 frames)
+    const skillsScale = interpolate(frame, [0, 15], [0, 1], {
+        extrapolateRight: "clamp",
+        easing: Easing.out(Easing.quad),
+    });
+
+    const agencyScale = interpolate(frame, [30, 45], [0, 1], {
+        extrapolateRight: "clamp",
+        easing: Easing.out(Easing.quad),
+    });
+
+    const intelligenceScale = interpolate(frame, [60, 75], [0, 1], {
+        extrapolateRight: "clamp",
+        easing: Easing.out(Easing.quad),
+    });
+
     const fontStyle: React.CSSProperties = {
         fontFamily: "GT Planar, sans-serif",
     };
@@ -43,7 +59,7 @@ const IntroSequence: React.FC = () => {
                 className="absolute top-[120px] left-20"
                 style={{
                     opacity: skillsOpacity,
-                    transform: `translateY(${skillsY}px)`
+                    transform: `translateY(${skillsY}px) scale(${skillsScale})`
                 }}
             >
                 <h1 className="text-[40px] font-bold text-gray-800 m-0 leading-none" style={fontStyle}>
@@ -56,7 +72,7 @@ const IntroSequence: React.FC = () => {
                 className="absolute bottom-20 left-20"
                 style={{
                     opacity: agencyOpacity,
-                    transform: `translateY(${agencyY}px)`
+                    transform: `translateY(${agencyY}px) scale(${agencyScale})`
                 }}
             >
                 <h1 className="text-[40px] font-bold text-gray-800 m-0 leading-none" style={fontStyle}>
@@ -69,7 +85,7 @@ const IntroSequence: React.FC = () => {
                 className="absolute top-[120px] right-20"
                 style={{
                     opacity: intelligenceOpacity,
-                    transform: `translate(calc(0px + ${slideOutX}px), ${intelligenceInY}px)`
+                    transform: `translate(calc(0px + ${slideOutX}px), ${intelligenceInY}px) scale(${intelligenceScale})`
                 }}
             >
                 <h1 className="text-[40px] font-bold text-gray-800 m-0 leading-none" style={fontStyle}>
