@@ -37,11 +37,11 @@ export const MasterComposition: React.FC = () => {
     // Add 100px offset to move it lower
     const translateY = enterY + 100;
 
-    // Animate Y rotation from 15 to -15 degrees over 240 frames
-    const rotateY = interpolate(frame, [0, 240], [15, -15]);
+    // Animate Y rotation from 15 to -15 degrees over 300 frames
+    const rotateY = interpolate(frame, [0, 300], [15, -15]);
 
     // Animate Scale growing slightly (0.9 -> 1.0)
-    const scale = interpolate(frame, [0, 240], [0.9, 1.0]);
+    const scale = interpolate(frame, [0, 300], [0.9, 1.0]);
 
     // Flip rotation: Starts at 20deg, flips forward to -90deg
     const rotateX = interpolate(exitProgress, [0, 1], [20, -90]);
@@ -57,7 +57,7 @@ export const MasterComposition: React.FC = () => {
 
             {/* Logos and Intro Text behind the terminal */}
             {/* Start at 130: Terminal begins flipping, Intro Text starts appearing immediately */}
-            <Sequence from={130} durationInFrames={110}>
+            <Sequence from={130} durationInFrames={300}>
                 <div className="w-full h-full flex items-center justify-center">
                     <LogoComposition />
                 </div>
@@ -66,7 +66,7 @@ export const MasterComposition: React.FC = () => {
             {/* Terminal Window */}
             <Sequence
                 from={-60}
-                durationInFrames={250}
+                durationInFrames={310} // Extend to cover full length if valid
                 style={{
                     transformOrigin: "bottom center",
                     transform: `translateY(${translateY}px) scale(${scale}) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
