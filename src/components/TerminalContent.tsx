@@ -12,6 +12,7 @@ interface TerminalContentProps {
     typingSpeed?: number;
     outputStartDelay?: number; // frames after typing ends before output starts
     outputLineDelay?: number; // frames between each output line
+    frameOverride?: number; // Optional frame override for "posterize time" effects
 }
 
 export const TerminalContent: React.FC<TerminalContentProps> = ({
@@ -22,8 +23,10 @@ export const TerminalContent: React.FC<TerminalContentProps> = ({
     typingSpeed = 3,
     outputStartDelay = 15,
     outputLineDelay = 4,
+    frameOverride,
 }) => {
-    const frame = useCurrentFrame();
+    const rawFrame = useCurrentFrame();
+    const frame = frameOverride ?? rawFrame;
 
     // Calculate how many characters to show based on current frame
     const typingProgress = Math.max(0, frame - startFrame);

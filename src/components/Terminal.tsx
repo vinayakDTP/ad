@@ -8,6 +8,7 @@ interface TerminalProps {
     typingSpeed?: number;
     outputStartDelay?: number;
     outputLineDelay?: number;
+    frameOverride?: number;
 }
 
 export const Terminal: React.FC<TerminalProps> = ({
@@ -18,6 +19,7 @@ export const Terminal: React.FC<TerminalProps> = ({
     typingSpeed = 3,
     outputStartDelay = 15,
     outputLineDelay = 4,
+    frameOverride,
 }) => {
     return (
         <div className="w-full h-full p-12 flex items-center justify-center">
@@ -50,6 +52,7 @@ export const Terminal: React.FC<TerminalProps> = ({
                     typingSpeed={typingSpeed}
                     outputStartDelay={outputStartDelay}
                     outputLineDelay={outputLineDelay}
+                    frameOverride={frameOverride}
                 />
             </div>
         </div>
