@@ -1,5 +1,5 @@
 import React from "react";
-import { Sequence, AbsoluteFill, useCurrentFrame, interpolate, spring, useVideoConfig, Img, staticFile, Audio } from "remotion";
+import { Sequence, AbsoluteFill, useCurrentFrame, interpolate, spring, useVideoConfig, Img, staticFile, Audio, Easing } from "remotion";
 import { SkillsComposition } from "./SkillsComposition";
 import { LogoComposition } from "./LogoComposition";
 
@@ -12,36 +12,39 @@ export const MasterComposition: React.FC = () => {
         frame,
         fps,
         config: {
-            damping: 200,
-            stiffness: 100,
+            damping: 100,
+            stiffness: 80,
             mass: 1,
         },
     });
 
-    // EXIT: Spring animation for flip
-    // Starts at frame 130 (approx 4.3s) - Aligned with Logo/Intro Text Start
-    const exitFrame = 130;
+    // EXIT: Smooth spring animation for flip (balanced speed)
+    // Starts at frame 200 - After all text is visible for a moment
+    const exitFrame = 200;
     const exitProgress = spring({
         frame: frame - exitFrame,
         fps,
         config: {
-            damping: 200,
-            stiffness: 100,
-            mass: 1,
+            damping: 80,
+            stiffness: 60,
+            mass: 1.5,
         },
     });
 
 
     const enterY = interpolate(entranceProgress, [0, 1], [600, 0]);
-    // Remove exitY translation
-    // Add 100px offset to move it lower
-    const translateY = enterY + 100;
+    // Smooth Y position
+    const translateY = enterY;
 
-    // Animate Y rotation from 15 to -15 degrees over 300 frames
-    const rotateY = interpolate(frame, [0, 300], [15, -15]);
+    // Animate Y rotation from 15 to -15 degrees over 390 frames with smooth easing
+    const rotateY = interpolate(frame, [0, 390], [15, -15], {
+        easing: Easing.inOut(Easing.cubic),
+    });
 
-    // Animate Scale growing slightly (0.9 -> 1.0)
-    const scale = interpolate(frame, [0, 300], [0.9, 1.0]);
+    // Animate Scale growing slightly (0.9 -> 1.0) with smooth easing
+    const scale = interpolate(frame, [0, 390], [0.9, 1.0], {
+        easing: Easing.inOut(Easing.cubic),
+    });
 
     // Flip rotation: Starts at 20deg, flips forward to -90deg
     const rotateX = interpolate(exitProgress, [0, 1], [20, -90]);
@@ -58,8 +61,8 @@ export const MasterComposition: React.FC = () => {
             />
 
             {/* Logos and Intro Text behind the terminal */}
-            {/* Start at 130: Terminal begins flipping, Intro Text starts appearing immediately */}
-            <Sequence from={130} durationInFrames={300}>
+            {/* Start at 200: Terminal begins flipping, Intro Text starts appearing immediately */}
+            <Sequence from={200} durationInFrames={190}>
                 <div className="w-full h-full flex items-center justify-center">
                     <LogoComposition />
                 </div>
@@ -68,7 +71,7 @@ export const MasterComposition: React.FC = () => {
             {/* Terminal Window */}
             <Sequence
                 from={-60}
-                durationInFrames={310} // Extend to cover full length if valid
+                durationInFrames={280} // Ends at frame 220, right after flip completes
                 style={{
                     transformOrigin: "bottom center",
                     transform: `translateY(${translateY}px) scale(${scale}) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
